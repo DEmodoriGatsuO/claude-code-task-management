@@ -1,7 +1,7 @@
 // GitHub Pages では docs/ が公開ルートになる。
 // data/ は docs/ の一つ上のディレクトリにあるため、
 // 相対パス '../data/' で参照する。
-const DATA_BASE = '../data/';
+const DATA_BASE = './data/';
 
 async function loadData(filename) {
   const res = await fetch(`${DATA_BASE}${filename}`);

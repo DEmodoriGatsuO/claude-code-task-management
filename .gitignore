@@ -67,3 +67,4 @@ docker-compose.local.yml
 .cache/
 dist/
 coverage/
+.claude/

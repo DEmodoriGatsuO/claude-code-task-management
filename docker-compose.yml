@@ -1,0 +1,47 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: github-pages-demo
+    working_dir: /workspace
+
+    # ローカルのリポジトリをコンテナ内の /workspace にマウント
+    volumes:
+      - .:/workspace:cached
+      # node_modules はコンテナ内にキャッシュ（ホスト側に漏れさせない）
+      - node_modules:/workspace/node_modules
+
+    ports:
+      # ホスト 3000 → コンテナ 3000（GitHub Pages プレビュー）
+      - "3000:3000"
+
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true  # Docker on Mac/Windows でのファイル監視
+
+    # コンテナ起動後に開発サーバーを立ち上げる
+    # docs/ を serve して data/ も同じオリジンで配信するため
+    # serve コマンドを使い repo root を公開する
+    command: >
+      sh -c "
+        echo '=== GitHub Pages Demo Dev Server ===' &&
+        echo 'Serving at http://localhost:3000' &&
+        echo 'Open http://localhost:3000/docs/ in your browser' &&
+        npx --yes serve . --listen 3000 --no-clipboard
+      "
+
+    # Claude Code からコンテナ内に入れるよう stdin/tty を有効化
+    stdin_open: true
+    tty: true
+
+    # ヘルスチェック（Claude Code がサーバー起動を待てるように）
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  node_modules:

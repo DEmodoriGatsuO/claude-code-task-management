@@ -1,0 +1,69 @@
+# ===== Node.js =====
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.npm
+.yarn/cache
+.yarn/unplugged
+.pnp.*
+
+# ===== Environment & Secrets =====
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+secrets/
+
+# ===== OS =====
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# ===== Editors =====
+# VSCode
+.vscode/
+!.vscode/extensions.json
+
+# JetBrains
+.idea/
+*.iml
+*.iws
+
+# Vim / Emacs
+*.swp
+*.swo
+*~
+\#*\#
+.#*
+
+# ===== Docker =====
+# ローカルのオーバーライド設定は共有しない
+docker-compose.override.yml
+docker-compose.local.yml
+
+# ===== Misc =====
+*.log
+*.tmp
+*.bak
+*.orig
+.cache/
+dist/
+coverage/

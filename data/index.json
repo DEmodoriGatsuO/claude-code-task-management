@@ -1,0 +1,6 @@
+{
+  "title": "GitHub Pages JSON Demo",
+  "description": "data/ フォルダの JSON ファイルを可視化するデモ",
+  "files": ["sample.json"],
+  "updatedAt": "2025-01-01"
+}
